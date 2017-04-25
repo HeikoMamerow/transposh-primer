@@ -33,10 +33,11 @@ function tp_primer_custom_box_html() {
 
 	?>
 	<div class="">
-		<p><strong>Status:</strong> <span id="tp-primer-status">Ready.</span>
+		<p><strong><?php _e( 'Status', 'transposh-primer' ) ?>:</strong>
+			<span id="tp-primer-status"><?php _e( 'Ready', 'transposh-primer' ) ?>.</span>
 		</p>
-		<button id="tp-primer-button" class="button" type="button">Start
-			priming
+		<button id="tp-primer-button" class="button" type="button">
+			<?php _e( 'Start priming', 'transposh-primer' ) ?>
 		</button>
 	</div>
 
@@ -50,7 +51,7 @@ function tp_primer_custom_box_html() {
 		 *   "https://example.demo/en/some_page?tpedit=1",
 		 *   "https://example.demo/fr/some_page?tpedit=1",
 		 * ];
-		*/
+		 */
 		var tpList = [
 			<?php
 			if ( function_exists( "transposh_widget" ) ) {
@@ -62,7 +63,7 @@ function tp_primer_custom_box_html() {
 
 	<iframe id="tp-primer-iframe" class="tp-primer-iframe"
 			src="<?php echo $permalink ?>">
-		Sorry, your browser don't support iframe. ;-(
+		<?php _e('Sorry, your browser don\'t support iframe. ;-(', 'transposh-primer' ) ?>
 	</iframe>
 	<?php
 }
@@ -73,11 +74,21 @@ function tp_primer_custom_box_html() {
  */
 function tp_primer_enqueue() {
 	$screen = get_current_screen();
-	if ( is_object( $screen ) ) {
-		if ( in_array( $screen->post_type, [ 'page' ] ) ) {
-			wp_enqueue_style( 'tp-primer-css', plugins_url( 'css/transposh-primer.css', __FILE__ ) );
-			wp_enqueue_script( 'tp-primer-js', plugins_url( 'js/transposh-primer.js', __FILE__ ), array(), '1.0.0', true );
-		}
+	if ( ( is_object( $screen ) ) && ( in_array( $screen->post_type, [ 'page' ] ) ) ) {
+		wp_enqueue_style( 'tp-primer-css', plugins_url( 'css/transposh-primer.css', __FILE__ ) );
+
+		wp_enqueue_script( 'tp-primer-js', plugins_url( 'js/transposh-primer.js', __FILE__ ), array(), '1.0.0', true );
+		wp_localize_script( 'tp-primer-js', 'tpPrimerObj', array(
+			'tpTpStartPriming' => __('Start priming', 'transposh-primer'),
+			'tpTpPrimePage' => __('Prime page', 'transposh-primer'),
+			'tpTpOf' => __('of', 'transposh-primer'),
+			'tpTpRemainingTime' => __('Remaining time', 'transposh-primer'),
+			'tpTpSec' => __('sec', 'transposh-primer'),
+			'tpTpDone' => __('Done', 'transposh-primer'),
+			'tpTpAll' => __('All', 'transposh-primer'),
+			'tpTpPages' => __('pages', 'transposh-primer'),
+			'tpTpPrimed' => __('primed', 'transposh-primer'),
+		) );
 	}
 }
 

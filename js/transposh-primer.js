@@ -1,10 +1,9 @@
+/* eslint-disable no-undef */
 window.addEventListener( 'load', () => {
 	/**
 	 * Start Priming.
 	 */
 	function tpPriming() {
-		let tpList;
-
 		const tpListLength = tpList.length;
 
 		let counter = 0;
@@ -14,7 +13,7 @@ window.addEventListener( 'load', () => {
 
 		document.getElementById( 'tp-primer-button' ).setAttribute( 'disabled', 'disabled' );
 		document.getElementById( 'tp-primer-status' ).className = 'tp-primer-start';
-		document.getElementById( 'tp-primer-status' ).innerHTML = 'Start priming.';
+		document.getElementById( 'tp-primer-status' ).innerHTML = tpPrimerObj.tpTpStartPriming;
 
 		// Start interval
 		const interval = setInterval( () => {
@@ -25,7 +24,7 @@ window.addEventListener( 'load', () => {
 			// Change status.
 			const countershow = counter + 1;
 			document.getElementById( 'tp-primer-status' ).className = 'tp-primer-prime';
-			document.getElementById( 'tp-primer-status' ).innerHTML = `Prime page ${countershow} of ${tpListLength}. Remaining time: ${remainingTime}sec.`;
+			document.getElementById( 'tp-primer-status' ).innerHTML = `${tpPrimerObj.tpTpPrimePage} ${countershow} ${tpPrimerObj.tpTpOf} ${tpListLength}. ${tpPrimerObj.tpTpRemainingTime}: ${remainingTime}${tpPrimerObj.tpTpSec}.`;
 
 			// Change src url
 			const tpUrl = tpList[ counter ];
