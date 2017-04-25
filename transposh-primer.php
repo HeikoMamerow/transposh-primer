@@ -45,13 +45,13 @@ function tp_primer_custom_box_html() {
 		 * Get list of all active Transposh variants of the origin page.
 		 *
 		 * List example:
-		 * var tp_list = [
+		 * var tpList = [
 		 *   "https://example.demo/de/some_page?tpedit=1",
 		 *   "https://example.demo/en/some_page?tpedit=1",
 		 *   "https://example.demo/fr/some_page?tpedit=1",
 		 * ];
 		*/
-		var tp_list = [
+		var tpList = [
 			<?php
 			if ( function_exists( "transposh_widget" ) ) {
 				transposh_widget( array(), array( 'widget_file' => 'tp-primer-list/tpw_primer_list.php' ) );

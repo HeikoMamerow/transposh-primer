@@ -1,45 +1,47 @@
-window.addEventListener("load", function () {
-	// Start Priming
-	function tp_priming() {
+window.addEventListener( 'load', () => {
+	/**
+	 * Start Priming.
+	 */
+	function tpPriming() {
+		let tpList;
 
-		var tp_list_length = tp_list.length;
+		const tpListLength = tpList.length;
 
-		var counter = 0;
+		let counter = 0;
 
-		var interval_time = 3000; // 1000 ms = 1 second
+		// 1000 ms = 1 second
+		const intervalTime = 3000;
 
-		document.getElementById("tp-primer-button").setAttribute("disabled", "disabled");
-		document.getElementById("tp-primer-status").className = "tp-primer-start";
-		document.getElementById("tp-primer-status").innerHTML = "Start priming.";
+		document.getElementById( 'tp-primer-button' ).setAttribute( 'disabled', 'disabled' );
+		document.getElementById( 'tp-primer-status' ).className = 'tp-primer-start';
+		document.getElementById( 'tp-primer-status' ).innerHTML = 'Start priming.';
 
 		// Start interval
-		var interval = setInterval(function () {
+		const interval = setInterval( () => {
+			const rest = tpList.length - counter;
 
-			var rest = tp_list.length - counter;
-
-			var remaining_time = rest * interval_time / 1000;
+			const remainingTime = rest * intervalTime / 1000;
 
 			// Change status.
-			var countershow = counter + 1;
-			document.getElementById("tp-primer-status").className = "tp-primer-prime";
-			document.getElementById("tp-primer-status").innerHTML = "Prime page " + countershow + " of " + tp_list_length + ". Remaining time: " + remaining_time + "sec.";
+			const countershow = counter + 1;
+			document.getElementById( 'tp-primer-status' ).className = 'tp-primer-prime';
+			document.getElementById( 'tp-primer-status' ).innerHTML = `Prime page ${countershow} of ${tpListLength}. Remaining time: ${remainingTime}sec.`;
 
 			// Change src url
-			var tp_url = tp_list[counter];
-			document.getElementById("tp-primer-iframe").src = tp_url;
+			const tpUrl = tpList[ counter ];
+			document.getElementById( 'tp-primer-iframe' ).src = tpUrl;
 
 			counter++;
 
 			// Stop interval if list end
-			if (counter === tp_list_length) {
-				clearInterval(interval);
-				document.getElementById("tp-primer-button").removeAttribute("disabled");
-				document.getElementById("tp-primer-status").className = "tp-primer-done";
-				document.getElementById("tp-primer-status").innerHTML = "Done. All " + tp_list_length + " pages primed.";
+			if ( counter === tpListLength ) {
+				clearInterval( interval );
+				document.getElementById( 'tp-primer-button' ).removeAttribute( 'disabled' );
+				document.getElementById( 'tp-primer-status' ).className = 'tp-primer-done';
+				document.getElementById( 'tp-primer-status' ).innerHTML = `Done. All ${tpListLength} pages primed.`;
 			}
-
-		}, interval_time);
+		}, intervalTime );
 	}
 
-	document.getElementById("tp-primer-button").onclick = tp_priming;
-});
+	document.getElementById( 'tp-primer-button' ).onclick = tpPriming;
+} );
