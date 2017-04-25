@@ -1,20 +1,22 @@
 <?php
 
 /**
- * Plugin Name:		Transposh Primer
- * Plugin URI:		https://github.com/HeikoMamerow/transposh-primer
- * Description:		Priming pages with transposh translation.
- * Version:			1.1.0
- * Author:			Heiko Mamerow
- * Author URI:		https://heikomamerow.de
- * License:			GPL-2.0+
- * License URI:		http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:		transposh-primer
- * Domain Path:		/languages
+ * Plugin Name: Transposh Primer
+ * Plugin URI: https://github.com/HeikoMamerow/transposh-primer
+ * Description: Priming pages with transposh translation.
+ * Version: 1.1.0
+ * Author: Heiko Mamerow
+ * Author URI: https://heikomamerow.de
+ * License: GPL-2.0+
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain: transposh-primer
+ * Domain Path: /languages
  */
 
 
-// Add meta box for page edit.
+/**
+ * Add meta box for page edit.
+ */
 function tp_primer_add_custom_box() {
 	add_meta_box( 'tp_primer_box_id', 'Transposh Primer', 'tp_primer_custom_box_html',  // Content callback, must be of type callable
 		'page' );
@@ -22,7 +24,9 @@ function tp_primer_add_custom_box() {
 
 add_action( 'add_meta_boxes', 'tp_primer_add_custom_box' );
 
-// Add content to meta box.
+/**
+ * Add content to meta box.
+ */
 function tp_primer_custom_box_html() {
 
 	$permalink = get_permalink();
@@ -37,10 +41,18 @@ function tp_primer_custom_box_html() {
 	</div>
 
 	<script>
-		// Get list of all Transposh variants of the origin page
+		/**
+		 * Get list of all active Transposh variants of the origin page.
+		 *
+		 * List example:
+		 * var tp_list = [
+		 *   "https://example.demo/de/some_page?tpedit=1",
+		 *   "https://example.demo/en/some_page?tpedit=1",
+		 *   "https://example.demo/fr/some_page?tpedit=1",
+		 * ];
+		*/
 		var tp_list = [
 			<?php
-			// List from transposh-widget
 			if ( function_exists( "transposh_widget" ) ) {
 				transposh_widget( array(), array( 'widget_file' => 'tp-primer-list/tpw_primer_list.php' ) );
 			}
@@ -55,9 +67,11 @@ function tp_primer_custom_box_html() {
 	<?php
 }
 
-// Enqueue script and style.
+/**
+ * Enqueue script and style.
+ * But only for page ademin.
+ */
 function tp_primer_enqueue() {
-	// Enqueue only for page admin.
 	$screen = get_current_screen();
 	if ( is_object( $screen ) ) {
 		if ( in_array( $screen->post_type, [ 'page' ] ) ) {
@@ -68,9 +82,3 @@ function tp_primer_enqueue() {
 }
 
 add_action( 'admin_enqueue_scripts', 'tp_primer_enqueue' );
-
-
-// test
-
-
-
