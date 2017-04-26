@@ -36,8 +36,11 @@ function tp_primer_custom_box_html() {
 		<p><strong><?php _e( 'Status', 'transposh-primer' ) ?>:</strong>
 			<span id="tp-primer-status"><?php _e( 'Ready', 'transposh-primer' ) ?>.</span>
 		</p>
-		<button id="tp-primer-button" class="button" type="button">
-			<?php _e( 'Start priming', 'transposh-primer' ) ?>
+		<button id="tp-primer-button" class="button tp-primer-button" type="button">
+			<?php _e( 'Page priming', 'transposh-primer' ) ?>
+		</button>
+		<button id="tp-tags-primer-button" class="button" type="button">
+			<?php _e( 'Tags priming', 'transposh-primer' ) ?>
 		</button>
 	</div>
 
@@ -45,17 +48,20 @@ function tp_primer_custom_box_html() {
 		/**
 		 * Get list of all active Transposh variants of the origin page.
 		 *
+		 * For the list we need a file in the transposh widget folder:
+		 * ...tp-primer-list/tpw_primer_pages.php
+		 *
 		 * List example:
-		 * var tpList = [
+		 * var tpListPage = [
 		 *   "https://example.demo/de/some_page?tpedit=1",
-		 *   "https://example.demo/en/some_page?tpedit=1",
+		 *   "https://example.demo/es/some_page?tpedit=1",
 		 *   "https://example.demo/fr/some_page?tpedit=1",
 		 * ];
 		 */
-		var tpList = [
+		let tpListPage = [
 			<?php
 			if ( function_exists( "transposh_widget" ) ) {
-				transposh_widget( array(), array( 'widget_file' => 'tp-primer-list/tpw_primer_list.php' ) );
+				transposh_widget( array(), array( 'widget_file' => 'tp-primer-list/tpw_primer_pages.php' ) );
 			}
 			?>
 		];
@@ -63,7 +69,7 @@ function tp_primer_custom_box_html() {
 
 	<iframe id="tp-primer-iframe" class="tp-primer-iframe"
 			src="<?php echo $permalink ?>">
-		<?php _e('Sorry, your browser don\'t support iframe. ;-(', 'transposh-primer' ) ?>
+		<?php _e( 'Sorry, your browser don\'t support iframe. ;-(', 'transposh-primer' ) ?>
 	</iframe>
 	<?php
 }
@@ -79,15 +85,15 @@ function tp_primer_enqueue() {
 
 		wp_enqueue_script( 'tp-primer-js', plugins_url( 'js/transposh-primer.js', __FILE__ ), array(), '1.0.0', true );
 		wp_localize_script( 'tp-primer-js', 'tpPrimerObj', array(
-			'tpTpStartPriming' => __('Start priming', 'transposh-primer'),
-			'tpTpPrimePage' => __('Prime page', 'transposh-primer'),
-			'tpTpOf' => __('of', 'transposh-primer'),
-			'tpTpRemainingTime' => __('Remaining time', 'transposh-primer'),
-			'tpTpSec' => __('sec', 'transposh-primer'),
-			'tpTpDone' => __('Done', 'transposh-primer'),
-			'tpTpAll' => __('All', 'transposh-primer'),
-			'tpTpPages' => __('pages', 'transposh-primer'),
-			'tpTpPrimed' => __('primed', 'transposh-primer'),
+			'tpTpStartPriming'  => __( 'Start priming', 'transposh-primer' ),
+			'tpTpPrimePage'     => __( 'Prime page', 'transposh-primer' ),
+			'tpTpOf'            => __( 'of', 'transposh-primer' ),
+			'tpTpRemainingTime' => __( 'Remaining time', 'transposh-primer' ),
+			'tpTpSec'           => __( 'sec', 'transposh-primer' ),
+			'tpTpDone'          => __( 'Done', 'transposh-primer' ),
+			'tpTpAll'           => __( 'All', 'transposh-primer' ),
+			'tpTpPages'         => __( 'pages', 'transposh-primer' ),
+			'tpTpPrimed'        => __( 'primed', 'transposh-primer' ),
 		) );
 	}
 }

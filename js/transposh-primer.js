@@ -4,7 +4,7 @@ window.addEventListener( 'load', () => {
 	 * Start Priming.
 	 */
 	function tpPriming() {
-		const tpListLength = tpList.length;
+		const tpListPageLength = tpListPage.length;
 
 		let counter = 0;
 
@@ -17,27 +17,27 @@ window.addEventListener( 'load', () => {
 
 		// Start interval
 		const interval = setInterval( () => {
-			const rest = tpList.length - counter;
+			const rest = tpListPage.length - counter;
 
 			const remainingTime = rest * intervalTime / 1000;
 
 			// Change status.
 			const countershow = counter + 1;
 			document.getElementById( 'tp-primer-status' ).className = 'tp-primer-prime';
-			document.getElementById( 'tp-primer-status' ).innerHTML = `${tpPrimerObj.tpTpPrimePage} ${countershow} ${tpPrimerObj.tpTpOf} ${tpListLength}. ${tpPrimerObj.tpTpRemainingTime}: ${remainingTime}${tpPrimerObj.tpTpSec}.`;
+			document.getElementById( 'tp-primer-status' ).innerHTML = `${tpPrimerObj.tpTpPrimePage + countershow + tpPrimerObj.tpTpOf + tpListPageLength + tpPrimerObj.tpTpRemainingTime}: ${remainingTime}${tpPrimerObj.tpTpSec}.`;
 
 			// Change src url
-			const tpUrl = tpList[ counter ];
+			const tpUrl = tpListPage[ counter ];
 			document.getElementById( 'tp-primer-iframe' ).src = tpUrl;
 
 			counter++;
 
 			// Stop interval if list end
-			if ( counter === tpListLength ) {
+			if ( counter === tpListPageLength ) {
 				clearInterval( interval );
 				document.getElementById( 'tp-primer-button' ).removeAttribute( 'disabled' );
 				document.getElementById( 'tp-primer-status' ).className = 'tp-primer-done';
-				document.getElementById( 'tp-primer-status' ).innerHTML = `Done. All ${tpListLength} pages primed.`;
+				document.getElementById( 'tp-primer-status' ).innerHTML = `${tpPrimerObj.tpTpDone}. ${tpPrimerObj.tpTpAll} ${tpListPageLength} ${tpPrimerObj.tpTpPages} ${tpPrimerObj.tpTpPrimed}.`;
 			}
 		}, intervalTime );
 	}
