@@ -49,7 +49,7 @@ function tp_primer_custom_box_html() {
 		 * Get list of all active Transposh variants of the origin page.
 		 *
 		 * For the list we need a file in the transposh widget folder:
-		 * ...tp-primer-list/tpw_primer_pages.php
+		 * .../tp-primer-list/tpw_primer_pages.php
 		 *
 		 * List example:
 		 * var tpListPage = [
