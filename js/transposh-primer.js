@@ -9,7 +9,7 @@ window.addEventListener( 'load', () => {
 		let counter = 0;
 
 		// 1000 ms = 1 second
-		const intervalTime = 3000;
+		const intervalTime = 20000;
 
 		document.getElementById( 'tp-primer-button' ).setAttribute( 'disabled', 'disabled' );
 		document.getElementById( 'tp-primer-status' ).className = 'tp-primer-start';
@@ -24,7 +24,7 @@ window.addEventListener( 'load', () => {
 			// Change status.
 			const countershow = counter + 1;
 			document.getElementById( 'tp-primer-status' ).className = 'tp-primer-prime';
-			document.getElementById( 'tp-primer-status' ).innerHTML = `${tpPrimerObj.tpTpPrimePage + countershow + tpPrimerObj.tpTpOf + tpListPageLength + tpPrimerObj.tpTpRemainingTime}: ${remainingTime}${tpPrimerObj.tpTpSec}.`;
+			document.getElementById( 'tp-primer-status' ).innerHTML = `${tpPrimerObj.tpTpPrimePage + countershow + tpPrimerObj.tpTpOf + tpListPageLength + tpPrimerObj.tpTpRemainingTime} ${remainingTime}${tpPrimerObj.tpTpSec}.`;
 
 			// Change src url
 			const tpUrl = tpListPage[ counter ];

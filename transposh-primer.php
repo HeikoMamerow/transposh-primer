@@ -39,9 +39,6 @@ function tp_primer_custom_box_html() {
 		<button id="tp-primer-button" class="button tp-primer-button" type="button">
 			<?php _e( 'Page priming', 'transposh-primer' ) ?>
 		</button>
-		<button id="tp-tags-primer-button" class="button" type="button">
-			<?php _e( 'Tags priming', 'transposh-primer' ) ?>
-		</button>
 	</div>
 
 	<script>
@@ -86,9 +83,9 @@ function tp_primer_enqueue() {
 		wp_enqueue_script( 'tp-primer-js', plugins_url( 'js/transposh-primer.js', __FILE__ ), array(), '1.0.0', true );
 		wp_localize_script( 'tp-primer-js', 'tpPrimerObj', array(
 			'tpTpStartPriming'  => __( 'Start priming', 'transposh-primer' ),
-			'tpTpPrimePage'     => __( 'Prime page', 'transposh-primer' ),
-			'tpTpOf'            => __( 'of', 'transposh-primer' ),
-			'tpTpRemainingTime' => __( 'Remaining time', 'transposh-primer' ),
+			'tpTpPrimePage'     => __( 'Prime page: ', 'transposh-primer' ),
+			'tpTpOf'            => __( ' of ', 'transposh-primer' ),
+			'tpTpRemainingTime' => __( ' Remaining time: ', 'transposh-primer' ),
 			'tpTpSec'           => __( 'sec', 'transposh-primer' ),
 			'tpTpDone'          => __( 'Done', 'transposh-primer' ),
 			'tpTpAll'           => __( 'All', 'transposh-primer' ),
